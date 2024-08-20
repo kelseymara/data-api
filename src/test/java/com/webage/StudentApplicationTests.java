@@ -1,5 +1,6 @@
 package com.webage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,6 +22,20 @@ class StudentApplicationTests {
 		
 		assertNotNull(result);
 		assertTrue(result.contains("API is working"));
+	}
+	
+	@Test
+	public void testGettersAndSetters() 
+	{
+		Customer customer = new Customer();
+		customer.setName("Kelsey");
+		customer.setId(1);
+		customer.setEmail("kelsey@mail.com");
+		
+		assertEquals("Kelsey",customer.getName());
+		assertEquals(1,customer.getId());
+		assertEquals("kelsey@mail.com",customer.getEmail());
+		
 	}
 	
 	@Test
