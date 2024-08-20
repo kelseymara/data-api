@@ -1,0 +1,1 @@
+insert INTO CUSTOMERS (CUSTOMER_NAME,EMAIL) values ('kelsey','kelsey@mail.com');

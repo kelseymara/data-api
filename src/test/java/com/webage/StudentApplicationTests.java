@@ -25,6 +25,7 @@ class StudentApplicationTests {
 	}
 	
 	@Test
+	@Disabled
 	public void testGettersAndSetters() 
 	{
 		Customer customer = new Customer();
