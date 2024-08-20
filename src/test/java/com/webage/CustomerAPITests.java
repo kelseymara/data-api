@@ -1,7 +1,10 @@
 package com.webage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.net.URI;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -34,5 +37,22 @@ public class CustomerAPITests{
 		assertNotNull(customer.getId());
 	}
 	
+	@Test
+	@Disabled
+	public void testCreate() {
+		Customer customer = new Customer();
+		customer.setName("Test");
+		customer.setEmail("test@mail.com");
+		
+		URI location = template.postForLocation("/api/customers", customer,Customer.class);
+		assertNotNull(location);
+		
+		customer= template.getForObject(location, Customer.class);
+		assertNotNull(customer);
+		assertNotNull(customer.getId());
+		assertEquals("Test", customer.getName());
+		assertEquals("test@mail.com",customer.getEmail());
+		
+	}
 	
 }
