@@ -38,7 +38,6 @@ public class CustomerAPITests{
 	}
 	
 	@Test
-	@Disabled
 	public void testCreate() {
 		Customer customer = new Customer();
 		customer.setName("Test");
@@ -52,7 +51,6 @@ public class CustomerAPITests{
 		assertNotNull(customer.getId());
 		assertEquals("Test", customer.getName());
 		assertEquals("test@mail.com",customer.getEmail());
-		
 	}
 	
 }
