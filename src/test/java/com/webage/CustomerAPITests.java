@@ -1,6 +1,7 @@
 package com.webage;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -15,11 +16,13 @@ public class CustomerAPITests{
 	@Autowired TestRestTemplate template;
 	
 	@Test
-	@Disabled
 	public void testGetList() {
-		Customer[] customers = template.getForObject("/customers", Customer[].class);
+		Customer[] customers = template.getForObject("/api/customers", Customer[].class);
 		
 		assertNotNull(customers);
+		assertNotNull(customers[0]);
+		assertNotNull(customers[0].getId());
+		assertTrue(customers.length>0);
 		
 	}
 	
