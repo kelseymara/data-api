@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,4 +62,20 @@ public class CustomerController{
 		return ResponseEntity.created(location).build();
 		
 	}
+	
+	@PutMapping("/customers/{id}")
+	public ResponseEntity<?> putCustomer(
+			@RequestBody Customer customer, 
+			@PathVariable long id)
+	{
+		if(customer.getId()!=id
+				|| customer.getName() == null
+				|| customer.getEmail()==null) {
+			return ResponseEntity.badRequest().build();
+		}
+		
+		repo.save(customer);
+		return ResponseEntity.ok().build();
+	}
+	
 }
