@@ -53,4 +53,23 @@ public class CustomerAPITests{
 		assertEquals("test@mail.com",customer.getEmail());
 	}
 	
+	@Test
+	@Disabled
+	public void testPut()
+	{
+		String path = "/api/customers/5";
+		String newValue = "NewValue";
+		
+		Customer customer = template.getForObject(path, Customer.class);
+		
+		customer.setName(newValue);
+		template.put(path, customer);
+		
+		customer = template.getForObject(path, Customer.class);
+		
+		assertEquals(newValue, customer.getName());
+		
+		
+	}
+	
 }
