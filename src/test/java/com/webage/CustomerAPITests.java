@@ -26,5 +26,13 @@ public class CustomerAPITests{
 		
 	}
 	
+	@Test
+	public void testGet() {
+		Customer customer = template.getForObject("/api/customers/{customerId}", Customer.class,1);
+		
+		assertNotNull(customer);
+		assertNotNull(customer.getId());
+	}
+	
 	
 }
