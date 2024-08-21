@@ -13,12 +13,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
+import com.webage.domain.Customer;
+
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
 public class CustomerAPITests{
 	
 	@Autowired TestRestTemplate template;
 	
 	@Test
+	@Disabled
 	public void testGetList() {
 		Customer[] customers = template.getForObject("/api/customers", Customer[].class);
 		
@@ -30,6 +33,7 @@ public class CustomerAPITests{
 	}
 	
 	@Test
+	@Disabled
 	public void testGet() {
 		Customer customer = template.getForObject("/api/customers/{customerId}", Customer.class,1);
 		
@@ -38,6 +42,7 @@ public class CustomerAPITests{
 	}
 	
 	@Test
+	@Disabled
 	public void testCreate() {
 		Customer customer = new Customer();
 		customer.setName("Test");

@@ -1,4 +1,4 @@
-package com.webage;
+package com.webage.api;
 
 
 import java.net.URI;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.webage.domain.Customer;
 import com.webage.repository.CustomersRepository;
 
 @RestController

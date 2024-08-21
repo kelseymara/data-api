@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.webage.api.CustomerController;
+import com.webage.domain.Customer;
+
 @SpringBootTest
 class StudentApplicationTests {
 
