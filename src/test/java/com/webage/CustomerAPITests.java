@@ -54,10 +54,10 @@ public class CustomerAPITests{
 	}
 	
 	@Test
-	@Disabled
+	//@Disabled
 	public void testPut()
 	{
-		String path = "/api/customers/5";
+		String path = "/api/customers/2";
 		String newValue = "NewValue";
 		
 		Customer customer = template.getForObject(path, Customer.class);
@@ -71,5 +71,22 @@ public class CustomerAPITests{
 		
 		
 	}
-	
+
+	@Test
+	public void testPost() {
+
+        Customer customer = new Customer();
+        customer.setName("Test");
+        customer.setEmail("test@test.com");
+
+        URI location = template.postForLocation("/api/customers", customer, Customer.class);
+        assertNotNull(location);
+
+        customer = template.getForObject(location, Customer.class);
+        assertNotNull(customer);
+        assertNotNull(customer.getId());
+        assertEquals("Test", customer.getName());
+        assertEquals("test@test.com", customer.getEmail());
+    }
+
 }
