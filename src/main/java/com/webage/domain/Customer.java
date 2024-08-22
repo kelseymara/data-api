@@ -10,17 +10,17 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="CUSTOMERS")
 public class Customer{
-	// variables
+	// Customer Attributes
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) // id as primary key
-	long id;
+	private long id;
 	
 	@Column(name="CUSTOMER_NAME")
-	String name;
+	private String name;
 	
-	String password;
+	private String password;
 
-	String email;
+	private String email;
 	
 	public Customer() {
 		
