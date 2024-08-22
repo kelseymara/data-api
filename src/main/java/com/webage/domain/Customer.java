@@ -18,6 +18,8 @@ public class Customer{
 	@Column(name="CUSTOMER_NAME")
 	String name;
 	
+	String password;
+
 	String email;
 	
 	public Customer() {
@@ -45,12 +47,20 @@ public class Customer{
 		this.name=name;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+
 	public String getEmail() {
 		return email;
 	}
 	
 	public void setEmail(String email) {
 		this.email=email;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }
