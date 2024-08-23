@@ -3,7 +3,7 @@ This repository contains code related to the Customer API
 
 ## Branches overview
 
-- **main** and **stage-02**: Both of these branches contain code related to stage 2. It is a RESTful API that serves hard coded Customer data and supports these endpoints:
+- **stage-02**: This branches contain code related to stage 2. It is a RESTful API that serves hard coded Customer data and supports these endpoints:
   - GET\api
   - GET\api\customers
   - GET\api\customers\{cust-id}
