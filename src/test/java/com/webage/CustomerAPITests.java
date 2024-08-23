@@ -45,7 +45,7 @@ public class CustomerAPITests{
 	@Test
     //@Disabled
     void rootWhenUnauthenticatedThen401() throws Exception {
-        //  GET the root resource without passing in any Authentication.
+        //  GET list of customers without passing in any Authentication.
         //  We expect a 401 unauthorized failure. 
         RequestEntity request = RequestEntity
             .get("/api/customers")
@@ -60,12 +60,13 @@ public class CustomerAPITests{
 	   @Test
     //@Disabled
     public void rootWhenValidJwtThen200() {
-        //  Generate a signed token for the principal "user" having "read" scope
+        // Create a JWT token that represents a user with permission to read data
         String token = generateToken("user", "read");
 
+        // Create a GET request to the /api/customers endpoint with the Authorization header containing the JWT
         RequestEntity request = RequestEntity
-            .get("/api/customers")
-            .header("Authorization","Bearer " + token)
+            .get("/api/customers") 
+            .header("Authorization","Bearer " + token) // Add the token to the request header
             .build();
 
             ResponseEntity<String> responseEntity =
@@ -92,12 +93,14 @@ public class CustomerAPITests{
         return encoder().encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 
+    // Injects the private key from testPrivate.pem, used for signing JWTs
     @Value("${rsa.private-key}") RSAPrivateKey privateKey;
+    // Injects the RSA public key from testPublic.pem, used for verifying JWTs
     @Value("${rsa.public-key}") RSAPublicKey publicKey;
 
     private JwtEncoder encoder() {
         JWK jwk = new RSAKey.Builder(publicKey).privateKey(privateKey).build();
         JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
-        return new NimbusJwtEncoder(jwks);
+        return new NimbusJwtEncoder(jwks); // 
     }
 }

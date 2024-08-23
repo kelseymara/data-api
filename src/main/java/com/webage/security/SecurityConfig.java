@@ -20,8 +20,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    // Injects the RSA public key from application.properties to verify JWT signatures.
     @Value("${rsa.public-key}") RSAPublicKey publicKey;
 
+    // takes the public key to verify JWT's signature
     private JwtDecoder jwtDecoder() {
         return NimbusJwtDecoder.withPublicKey(publicKey).build();
     }
@@ -29,14 +31,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-            //  Disable sessions.  We want a stateless application:
+            //  Disable sessions.  We want a stateless application (no session info stored on server)
             .sessionManagement(
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) 
 
-            //  CSRF protection is merely extra overhead with session management disabled:
+            //  Disables CSRF protection because the app doesn't use sessions, so CSRF tokens are unnecessary.
             .csrf(csrf -> csrf.disable())
 
-            //  All inbound requests must be authenticated:
+            //  All inbound requests (except root path "/"")must be authenticated:
             .authorizeHttpRequests( auth -> auth
                 .requestMatchers("/").permitAll()
                 .anyRequest().authenticated()

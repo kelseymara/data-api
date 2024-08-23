@@ -28,7 +28,7 @@ class StudentApplicationTests {
 	}
 	
 	@Test
-	@Disabled
+	//@Disabled
 	public void testGettersAndSetters() 
 	{
 		Customer customer = new Customer();
@@ -42,18 +42,5 @@ class StudentApplicationTests {
 		
 	}
 	
-	@Test
-	@Disabled
-	public void testGetAll()
-	{
-		
-	}
-	
-	@Test
-	@Disabled
-	public void testGetById()
-	{
-		
-	}
 	
 }
