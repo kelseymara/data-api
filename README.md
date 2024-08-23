@@ -10,10 +10,7 @@ This repository contains code related to the Customer API
 
 - **stage-03**: This branch has full CRUD operations implemented for the Customer API. It can be ran standalone or by using docker.
 
-- **stage-04**: There are a few branches for stage-04 based on my progress. The branch with the highest number at the end is the most updated.
-  First working implementation (stage-04-2) involved following the Security Boot lab. - Customer accepts JWT token, which is produced by Account (branches attempt-2 and attempt-3) in Account repository https://github.com/kelseymara/account-api/tree/attempt-3.
-  These were tested by using POST in account first, and then GET in Customer.
--  Stage-04-03 branch is the latest branch. So far it only has the change of an added password attribute to Customer (as of 8/21)
+- **stage-04**: This branch implements OAuth2 for the Customer. The customer can retrieve a JWT from the Account service, which generates the token (located in repository:  https://github.com/kelseymara/account-api). Once the token is obtained, the customer can access and display a list of customers. These functionalities were tested using POST in the Account to create the token first, and GET in Customer to access the customer data.
 
   
   
