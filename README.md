@@ -14,3 +14,6 @@ This repository contains code related to the Customer API
 -The customer can retrieve a JWT from the Account service, which generates the token (located in repository:  https://github.com/kelseymara/account-api). Once the token is obtained, the user can complete CRUD functions on Customer.
   
   
+## Running the Code
+- Execute "./gradlew" in the project directory to retrieve dependencies
+- Execute "./gradlew bootRun" to compile and run the app in standalone more
