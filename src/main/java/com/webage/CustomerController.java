@@ -70,7 +70,6 @@ public class CustomerController{
 	}
 
 	@CrossOrigin(origins = "http://localhost:3000") // Allow requests from this origin
-
 	@PostMapping("/react/customers")
 public ResponseEntity<Customer> addReactCustomer(@RequestBody Customer newCustomer) {
     // Validate Input
@@ -107,6 +106,28 @@ public ResponseEntity<Customer> addReactCustomer(@RequestBody Customer newCustom
 		return ResponseEntity.ok().build();
 	}
 	
+	@CrossOrigin(origins = "http://localhost:3000") // Allow requests from this origin
+@PutMapping("/react/customers/{id}")
+public ResponseEntity<Customer> putReactCustomer(
+        @RequestBody Customer customer, 
+        @PathVariable long id) {
+    // Validate Input
+    if (customer.getId() != id || customer.getName() == null || customer.getEmail() == null) {
+        return ResponseEntity.badRequest().build();
+    }
+
+    // Check if the customer exists
+    if (!repo.existsById(id)) {
+        return ResponseEntity.notFound().build();
+    }
+
+    // Update the customer
+    customer.setId(id); // Ensure the ID is set correctly
+    Customer updatedCustomer = repo.save(customer);
+
+    // Return the response with the updated customer
+    return ResponseEntity.ok(updatedCustomer);
+}
 	// Delete
 	@DeleteMapping("/customers/{customerId}")
 	public ResponseEntity<?>deleteCustomer(@PathVariable("customerId") long id){
