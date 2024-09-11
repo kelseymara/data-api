@@ -69,27 +69,27 @@ public class CustomerController{
 	
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000") // Allow requests from this origin
-	@PostMapping("/react/customers")
-public ResponseEntity<Customer> addReactCustomer(@RequestBody Customer newCustomer) {
-    // Validate Input
-    if (newCustomer.getName() == null || newCustomer.getEmail() == null) {
-        return ResponseEntity.badRequest().build();
-    }
+// 	@CrossOrigin(origins = "http://localhost:3000") // Allow requests from this origin
+// 	@PostMapping("/react/customers")
+// public ResponseEntity<Customer> addReactCustomer(@RequestBody Customer newCustomer) {
+//     // Validate Input
+//     if (newCustomer.getName() == null || newCustomer.getEmail() == null) {
+//         return ResponseEntity.badRequest().build();
+//     }
 
-    // Save the customer
-    Customer savedCustomer = repo.save(newCustomer);
+//     // Save the customer
+//     Customer savedCustomer = repo.save(newCustomer);
     
-    // Build the URI for the created resource
-    URI location = ServletUriComponentsBuilder
-        .fromCurrentRequest()
-        .path("/{customerId}")
-        .buildAndExpand(savedCustomer.getId())
-        .toUri();
+//     // Build the URI for the created resource
+//     URI location = ServletUriComponentsBuilder
+//         .fromCurrentRequest()
+//         .path("/{customerId}")
+//         .buildAndExpand(savedCustomer.getId())
+//         .toUri();
 
-    // Return the response with the created customer and location
-    return ResponseEntity.created(location).body(savedCustomer);
-}
+//     // Return the response with the created customer and location
+//     return ResponseEntity.created(location).body(savedCustomer);
+// }
 	
 	@PutMapping("/customers/{id}")
 	public ResponseEntity<?> putCustomer(
